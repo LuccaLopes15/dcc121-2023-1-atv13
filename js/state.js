@@ -5,7 +5,12 @@ export function getTabuleiro(){
 }
 
 export function mover(de, para){
-    if(Math.abs(para - de)>=3)
+    if(Math.abs(para - de) >= 3 || tabuleiro[para]!== null){
         return false;
-    return true;
+    }   
+    else{
+        tabuleiro[para] = tabuleiro[de]
+        tabuleiro[de] = null;
+        return true;
+    }
 }
