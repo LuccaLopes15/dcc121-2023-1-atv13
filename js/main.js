@@ -14,7 +14,7 @@ function comecaArrastar (evento){
 
 function recebeAlgo(evento){
     if(arrastado && evento.target.classList.contains('casa')){
-        const posDisco = arrastado.dataset.posicao;
+        const posDisco = Number(arrastado.dataset.posicao);
         const posCasa = evento.target.dataset.posicao;
         console.log(`Tenta mover o disco de ${posDisco} para ${posCasa}`);
         if(mover(posDisco,posCasa)){
