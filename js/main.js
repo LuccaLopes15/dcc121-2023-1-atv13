@@ -1,4 +1,4 @@
-import { getTabuleiro } from "./state.js";
+import { getTabuleiro, mover } from "./state.js";
 
 const eTabuleiro = document.querySelector(".tabuleiro");
 const disco = document.querySelector(".disco");
@@ -14,11 +14,18 @@ function comecaArrastar (evento){
 
 function recebeAlgo(evento){
     if(arrastado && evento.target.classList.contains('casa')){
-        evento.target.appendChild(arrastado);
-        const posDisco = arrastado.dataset.posicao;
+        const posDisco = Number(arrastado.dataset.posicao);
         const posCasa = evento.target.dataset.posicao;
-        console.log(`Moveu o disco de ${posDisco} para ${posCasa}`);
-        arrastado = null;
+        console.log(`Tenta mover o disco de ${posDisco} para ${posCasa}`);
+        if(mover(posDisco,posCasa)){
+            evento.target.appendChild(arrastado);
+            console.log(`Moveu o disco de ${posDisco} para ${posCasa}`);
+            arrastado.dataset.posicao = posCasa;
+            arrastado = null;
+        }
+        else{
+            console.log(`Não pode mover o disco de ${posDisco} para ${posCasa}`);
+        }
     }
 }
 
