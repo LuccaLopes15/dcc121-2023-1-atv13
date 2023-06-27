@@ -5,5 +5,7 @@ export function getTabuleiro(){
 }
 
 export function mover(de, para){
-    return false;
+    if(Math.abs(para - de)>=3)
+        return false;
+    return true;
 }
